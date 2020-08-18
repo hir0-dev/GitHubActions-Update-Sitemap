@@ -10,8 +10,14 @@ git remote set-url origin https://hir0-dev:${GITHUB_TOKEN}@github.com/hir0-dev/G
 git checkout master
 
 # update sitemap.xml
+## ISO 8601
+date="[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}"
+time="[0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}"
+timezone="+[0-9]\{2\}:[0-9]\{2\}"
+lastmod="${date}T${time}${timezone}"
+
 now=$(TZ=Asia/Tokyo date "+%Y-%m-%dT%H:%M:%S%:z")
-sed -i -e "s/[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}T[0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}+[0-9]\{2\}:[0-9]\{2\}/${now}/g" sitemap.xml
+sed -i -e "s/${lastmod}/${now}/g" sitemap.xml
 
 # commit
 git add sitemap.xml
