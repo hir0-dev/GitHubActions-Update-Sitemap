@@ -1,0 +1,2 @@
+# GitHubActions-Update-Sitemap
+push masterをトリガーにして、sitemap.xmlのlastmodを現在時刻で更新します
